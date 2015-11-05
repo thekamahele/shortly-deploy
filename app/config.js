@@ -31,17 +31,20 @@ mondb.Urls = new mongoose.Schema({
   visits: Number
 });
 
-mondb.User.methods.hashPassword = function(){
+mondb.User.methods.hashPassword = function(callback){
     var cipher = Promise.promisify(bcrypt.hash);
     return cipher(this.password, null, null).bind(this)
-      .then(function(hash) {
-        console.log(hash);
+      .then(function(hash) { 
         this.password = hash;
+        callback()
       });
 }
 
 mondb.User.methods.comparePassword = function(attemptedPassword, callback) {
+  console.log('attempted:', attemptedPassword)
+  console.log('this:', this.password)
     bcrypt.compare(attemptedPassword, this.password, function(err, isMatch) {
+
       callback(isMatch);
     });
   },
