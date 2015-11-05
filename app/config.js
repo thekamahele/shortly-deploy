@@ -1,6 +1,7 @@
 var path = require('path');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test')
+console.log(process.env.db)
+mongoose.connect(process.env.db || 'mongodb://localhost/test')
 var bcrypt = require('bcrypt-nodejs');
 var Promise = require('bluebird');
 
