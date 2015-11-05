@@ -28,7 +28,9 @@ app.get('/logout', handler.logoutUser);
 
 app.get('/signup', handler.signupUserForm);
 app.post('/signup', handler.signupUser);
+app.get('/mon', handler.addUser)
 
-app.get('/*', handler.navToLink);
+// app.get('/*', handler.navToLink);
+
 
 module.exports = app;
